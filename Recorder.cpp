@@ -256,7 +256,7 @@ void WIN_MICROFONE_RECORDER::user_select_device()
 		printf("Select device to Record:\n");
 		for (uint8_t _ind = NULL; _ind < _device_cnt; _ind++)
 		{
-			_tmp_disp_str = converter.to_bytes(_device_names[_record_from]);
+			_tmp_disp_str = converter.to_bytes(_device_names[_ind]);
 			printf("%i: %s \n", _ind, _tmp_disp_str.c_str());
 		}
 
@@ -270,6 +270,8 @@ void WIN_MICROFONE_RECORDER::user_select_device()
 		} while (_key_code < 48 || _key_code > (_device_cnt + 47) && _key_code != 'N');
 
 		if(_key_code == 'N') exit(EXIT_SUCCESS);
+		
+		_record_from = _key_code - 47;
 	}
 
 	_tmp_disp_str = converter.to_bytes(_device_names[_record_from]);
